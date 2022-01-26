@@ -1,23 +1,30 @@
 
 THINGS I WOULD HAVE DONE IN A PRODUCTION PROJECT WHERE SECURITY AND PERFORMANCE ARE A PRIORITY
-	- Full CRUD API, it’s always good to have all the endpoints, they would be need it
-	- Authenticate the endpoints through token to give access to use them (JWT/Auth0/Okta)
-	- Token for API and logging in front end with expiracy time and autorenewal
+	- Full CRUD API, it is always useful to have all the endpoints, they would be needed
+
+	- Authenticate the endpoints with token (JWT/Auth0/Okta)
+
+	- Token for API and logging in front end with expiration, and automatically refreshing token if user still connected
+
 	- AWS/Cloud infrastructure for horizontal scaling to keep up with traffic and response times (multiple instances, microservices architecture)
-	- Using a NonSQL DB for better response times and to avoid bottlenecks (horizontal scaling and strongly consistent)
-	- If it had to be a relational DB I would trade off a bit of consistence in order to use features like AWS RDS feature to have parallel instances (e.g. One for writing, 2 for reading)
+
+	- Using a NonSQL DB for better response times and to avoid bottlenecks (horizontal scaling and strongly consistency
+
+	- If it had to be a relational DB I would trade off a bit of consistency in order to use features like AWS RDS feature to have parallel instances (e.g. One for writing, 2 for reading)
+
 	- Another alternative for better Relational DB performance could be having multiple synchronized DBs, some for reading and some for writing
-	- Distributed cache for improved time responses regarding DB access
-	- Unitest with and 80%/90% coverage
-	- API responses a bit more polished
-	- More comments/documentation
+
+	- Distributed cache to improve latency throughout the system
+
+	- Unit test with and 80%/90% coverage
 
 
 
-ALCARACIONES
-	- DB Script in the repo creates the db, and add the testing data
-	- Because of time exception types are not being handle (only one catch)
-	- The token is hardcoded in the SignIn response, didn’t get to fully implement the token/endpoint authentication
-	- I hashed all the data in the Created Users table, I believe is a good practice to hash all sensible/personal information
-	- I didn’t know if I was allowed to use EF, so I used plain ADO because EF is an ORM and the document said not to use ORMs.
-	- Tested with the data in the DBscript
+COMMENTS
+	- Due to the short ammount of time I had (because I had to fly during the weekend) different exception types are not being handle
+
+	- The token is hardcoded in the SignIn response. Again, I did not get to fully implement the token/endpoint authentication
+
+	- I did not get to finish the token authentication between front end and backend
+
+	- Lastly, I could not get to do the unit test.
