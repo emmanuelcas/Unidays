@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnidaysBack", "UnidaysBack\UnidaysBack.csproj", "{8B1FDDC1-E2A3-4EE4-9576-3AC16D3A328D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnidaysFront", "UnidaysFront\UnidaysFront.csproj", "{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B1FDDC1-E2A3-4EE4-9576-3AC16D3A328D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1FDDC1-E2A3-4EE4-9576-3AC16D3A328D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1FDDC1-E2A3-4EE4-9576-3AC16D3A328D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1FDDC1-E2A3-4EE4-9576-3AC16D3A328D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4CC03E6-7C3C-481C-A837-D670CDFE07D8}
+	EndGlobalSection
+EndGlobal
