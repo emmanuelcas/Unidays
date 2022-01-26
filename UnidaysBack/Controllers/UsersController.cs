@@ -20,6 +20,9 @@ namespace UnidaysBack.Controllers
             DB.ConnectionString = iConfig.GetConnectionString("DefaultConnection");
         }
 
+        public UsersController()
+        {
+        }
 
         [HttpPost("Add")]
         public async Task<JsonResult> Post([FromBody] CreatedUser value)
@@ -38,7 +41,7 @@ namespace UnidaysBack.Controllers
             catch (Exception ex)
             {
                 response.ResponseCode = 3;
-                response.Message = ex.Message;
+                response.Message = "ERROR: " + ex.Message;
             }
 
             return new JsonResult(response);
@@ -69,7 +72,7 @@ namespace UnidaysBack.Controllers
             catch (Exception ex)
             {
                 response.ResponseCode = 3;
-                response.Message = ex.Message;
+                response.Message = "ERROR: " + ex.Message;
             }
 
             return new JsonResult(response);

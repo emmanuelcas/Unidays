@@ -50,7 +50,7 @@ namespace UnidaysBack.Services
                 }
                 catch (Exception ex)
                 {
-                    //message = ex.Message;
+                    throw;
                 }
             }
             else
@@ -83,7 +83,7 @@ namespace UnidaysBack.Services
 
             catch (Exception ex)
             {
-
+                throw;
             }
             return true;
 
@@ -114,7 +114,7 @@ namespace UnidaysBack.Services
 
             catch (Exception ex)
             {
-
+                throw;
             }
             return true;
 
