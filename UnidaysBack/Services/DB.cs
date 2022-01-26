@@ -1,10 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 using UnidaysBack.Models;
 using UnidaysBack.Utils;
@@ -17,106 +14,72 @@ namespace UnidaysBack.Services
 
 
 
-        public static async Task<int> Insert(CreatedUser value)
+        public static async Task Insert(CreatedUser value)
         {
-            int code = 1;
-            if (CheckExistingEmail(value.Email) == false)
+            if (!IsEmailAlreadyPersisted(value.Email))
             {
-                try
+                using (MySqlConnection conn = new MySqlConnection(ConnectionString))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(ConnectionString))
-                    {
 
-                        string query = "insert into createdusers (email,password) values (@email,@password);";
-                        var parameters = new IDataParameter[]
-                        {
+                    string query = "insert into createdusers (email,password) values (@email,@password);";
+                    var parameters = new IDataParameter[]
+                    {
                         new MySqlParameter("@email", HashHelper.GetStringHash(value.Email)),
                         new MySqlParameter("@password", HashHelper.GetStringHash(value.Password)),
-                        };
-                        conn.Open();
-                        using (MySqlCommand command = new MySqlCommand(query, conn))
+                    };
+                    conn.Open();
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        if (parameters != null)
                         {
-                            if (parameters != null)
+                            foreach (var parameter in parameters)
                             {
-                                foreach (IDataParameter para in parameters)
-                                {
-                                    command.Parameters.Add(para);
-                                }
-                                await command.ExecuteNonQueryAsync();
+                                command.Parameters.Add(parameter);
                             }
-
+                            await command.ExecuteNonQueryAsync();
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    throw;
-                }
             }
             else
-                code = 2;
-
-            return code;
-        }
-
-        private static bool CheckExistingEmail(string email)
-        {
-            try
             {
-
-                string emailid = string.Empty;
-                using (MySqlConnection conn = new MySqlConnection(ConnectionString))
-                {
-                    string query = "select id from createdusers where email = '"+ HashHelper.GetStringHash(email) + "'";
-                    conn.Open();
-                    MySqlCommand command = new MySqlCommand(query, conn);
-                    emailid = Convert.ToString(command.ExecuteScalar());
-
-                }
-
-                if (emailid == "")
-                    return false;
-                else
-                    return true;
+                throw new Exception("User with that email already exists");
             }
-
-
-            catch (Exception ex)
-            {
-                throw;
-            }
-            return true;
-
+                
         }
 
 
-        public static bool SignInValidation(SignInUser user)
+
+        private static bool IsEmailAlreadyPersisted(string email)
         {
-            try
+            string emailId = string.Empty;
+            using (var conn = new MySqlConnection(ConnectionString))
             {
+                string query = "select id from createdusers where email = '" + HashHelper.GetStringHash(email) + "'";
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(query, conn);
+                emailId = Convert.ToString(command.ExecuteScalar());
 
-                string SignInUserID = string.Empty;
-                using (MySqlConnection conn = new MySqlConnection(ConnectionString))
-                {
-                    string query = "select id from loginusers where (username = '" + HashHelper.GetStringHash(user.Username) + "' AND password = '" + HashHelper.GetStringHash(user.Password) + "')";
-                    conn.Open();
-                    MySqlCommand command = new MySqlCommand(query, conn);
-                    SignInUserID = Convert.ToString(command.ExecuteScalar());
-
-                }
-
-                if (SignInUserID == "")
-                    return false;
-                else
-                    return true;
             }
 
+            return !(emailId == "");
+        }
 
-            catch (Exception ex)
+
+        public static void SignInValidation(SignInUser user)
+        {
+            string signInUserID = string.Empty;
+            using (var conn = new MySqlConnection(ConnectionString))
             {
-                throw;
+                string query = "select id from loginusers where (username = '" + HashHelper.GetStringHash(user.Username) + "' AND password = '" + HashHelper.GetStringHash(user.Password) + "')";
+                conn.Open();
+                var command = new MySqlCommand(query, conn);
+                signInUserID = Convert.ToString(command.ExecuteScalar());
+
             }
-            return true;
+
+            if(signInUserID == "")
+                throw new Exception("Invalid User and/or Password");
 
         }
 

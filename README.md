@@ -10,6 +10,7 @@ THINGS I WOULD HAVE DONE IN A PRODUCTION PROJECT WHERE SECURITY AND PERFORMANCE 
 	- Distributed cache for improved time responses regarding DB access
 	- Unitest with and 80%/90% coverage
 	- API responses a bit more polished
+	- More comments/documentation
 
 
 

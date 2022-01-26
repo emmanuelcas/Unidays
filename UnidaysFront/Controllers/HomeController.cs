@@ -1,18 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using UnidaysFront.Models;
 
 namespace UnidaysFront.Controllers
 {
     public class HomeController : Controller
     {
+
+        string APIUrl;
+        public HomeController(IConfiguration iConfig)
+        {
+            APIUrl = iConfig["APIUrl"];
+        }
+
         [Authorize]
         public IActionResult Index()
         {
@@ -21,17 +25,15 @@ namespace UnidaysFront.Controllers
 
         public IActionResult AddUser(CreatedUser user)
         {
-
-
-            var Client = new HttpClient();
+            var client = new HttpClient();
             var content = JsonConvert.SerializeObject(user);
             var data = new StringContent(content, Encoding.UTF8, "application/json");
-            var response = Client.PostAsync("https://localhost:44374/Users/Add", data).Result;
-            var UserResp= JsonConvert.DeserializeObject<CreateUserResponse>(response.Content.ReadAsStringAsync().Result);
+            var response = client.PostAsync(APIUrl + "/Add", data).Result;
+            var errorMessage= JsonConvert.DeserializeObject<string>(response.Content.ReadAsStringAsync().Result);
 
 
-
-            ViewBag.Message = UserResp.Message;
+            if (errorMessage != null)
+                ViewBag.Message = errorMessage;
 
             return View("Index");
         }

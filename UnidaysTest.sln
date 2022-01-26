@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnidaysBack", "UnidaysBack\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnidaysFront", "UnidaysFront\UnidaysFront.csproj", "{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnidaysTesting", "UnidaysTesting\UnidaysTesting.csproj", "{3D87F667-37D8-442B-9EF8-3A6A714BDD07}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C428EAF1-F59E-4AC3-99CC-B70746DFB1AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D87F667-37D8-442B-9EF8-3A6A714BDD07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D87F667-37D8-442B-9EF8-3A6A714BDD07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D87F667-37D8-442B-9EF8-3A6A714BDD07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D87F667-37D8-442B-9EF8-3A6A714BDD07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
